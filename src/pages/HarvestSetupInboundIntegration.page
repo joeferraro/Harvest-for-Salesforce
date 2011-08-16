@@ -1,0 +1,37 @@
+<apex:page controller="HarvestSetupController" tabStyle="Harvest_Setup__tab">
+    <apex:sectionHeader title="Harvest for Salesforce" subtitle="Inbound Integration Settings"
+        description="Please enter the username/password for the inbound integration for Harvest"/>
+    <apex:form id="form">         
+        <apex:pageBlock title="Inbound sync credentials" id="block">
+            <apex:pageBlockButtons location="top">
+                <table style="width:auto;"> 
+                    <tr>
+                        <td style="vertical-align:middle;" valign="middle">
+                            <apex:commandButton value="Save" action="{!save}"/>
+                            <apex:commandButton value="Cancel" action="{!cancel}"/>
+                        </td> 
+                        <td style="vertical-align:middle;" valign="middle">
+                            <apex:actionStatus id="status">
+                                <apex:facet name="start">
+                                    <apex:image value="{!$Resource.loading}" width="16"/>
+                                </apex:facet>
+                            </apex:actionStatus>
+                        </td>
+                    </tr>
+                </table>
+            </apex:pageBlockButtons>  
+            <apex:pageBlockSection columns="1" id="mainSection">
+                <apex:inputField value="{!settings.Enable_Inbound_Sync__c}" id="chkEnable">
+                    <apex:actionSupport event="onclick" status="status" rerender="block"/>
+                </apex:inputField>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection columns="1" id="credentialsSection" rendered="{!settings.Enable_Inbound_Sync__c}">
+                <apex:inputField value="{!settings.Username__c}" style="width:200px;"/>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel for="pw" value="Password"/>
+                    <apex:inputSecret id="pw" value="{!settings.Password__c}" redisplay="true" style="width:200px;"/>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

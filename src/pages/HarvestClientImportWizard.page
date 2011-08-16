@@ -1,0 +1,98 @@
+<apex:page controller="HarvestClientImportWizard" tabStyle="Harvest_Setup__tab" action="{!init}">
+	<script>
+		function deselectSelectAll() {
+			document.getElementById("{!$Component.form.mainBlock.mainTable.chkSelectAll}").checked = false;
+		}
+	</script>
+	<apex:includeScript value="{!URLFOR($Resource.harvest, '/js/selectAll.js')}"/>
+	<apex:sectionHeader title="Harvest for Salesforce" subtitle="Import Clients" description="Select Harvest Clients below to import as Salesforce Accounts"/>
+    <apex:form id="form">          
+        <apex:outputPanel id="wrapper">
+        	<apex:pageBlock title="Harvest Clients" id="mainBlock">
+		        <apex:pageBlockButtons location="top">
+			        <table style="width:auto;">
+			        	<tr>
+			        		<td style="vertical-align:middle;" valign="middle">
+						        <apex:commandButton value="Import Selected Clients" action="{!doImport}" rendered="{!clients.size > 0}"/>
+						        <apex:commandButton value="{!if(clients.size > 0, 'Cancel', 'Go Back')}" action="{!cancel}"/>
+			        		</td>
+			        		<td style="vertical-align:middle;" valign="middle">
+						        <apex:actionStatus id="getClientStatus">
+						        	<apex:facet name="start">
+						        		<apex:image value="{!$Resource.loading}" width="16"/>
+						        	</apex:facet>
+						        </apex:actionStatus>
+			        		</td>
+			        	</tr>
+			        </table>
+		        </apex:pageBlockButtons>
+				<apex:outputPanel id="pageMessages">
+			        <apex:pageMessages />
+			    </apex:outputPanel>
+				<apex:pageMessage summary="No Harvest Clients found" 
+					severity="error" strength="3" rendered="{!clients.size == 0}" />
+	        	<apex:pageBlockTable value="{!clients}" var="c" id="mainTable" rendered="{!clients.size > 0}">
+	        		<apex:column headerValue="" width="30">
+	        			<apex:facet name="header">
+	        				<apex:inputCheckbox onclick="selectAll('{!$Component.form.mainBlock.mainTable}')" id="chkSelectAll"/>
+	        			</apex:facet>
+	        			<apex:inputCheckbox value="{!c.isSelected}"/>
+	        		</apex:column>
+	        		<apex:column headerValue="Client Name" value="{!c.client.name}"/>
+	        		<apex:column headerValue="Details" value="{!c.client.details}"/>
+	        		<apex:column headerValue="Active Harvest Client">
+	        			<apex:image value="{!if(c.client.active == true, $Resource.checked, $Resource.unchecked)}"/>
+	        		</apex:column>
+	        		<apex:column headerValue="Harvest Id" value="{!c.client.id}"/>
+	        	
+					<apex:facet name="footer">
+						<apex:outputPanel >
+						<div class="paginator">
+							<span class="left">
+								<apex:outputText value="{!paginator.recordCount} Total Results"/>
+							</span> 
+							<span class="prevNextLinks">
+								<span class="prevNext">
+									<img class="{!IF(paginator.hasPrevious,'prev','prevoff')}" src="/s.gif" id="imgPrevious"/>
+									
+									<apex:commandLink value="Previous" action="{!paginator.previous}"
+										rendered="{!IF(paginator.hasPrevious,'true','false')}" 
+										onclick="deselectSelectAll();" status="getClientStatus" rerender="mainTable"/>	
+									<apex:outputText value="Previous" rendered="{!IF(NOT(paginator.hasPrevious),'true','false')}"/>
+								</span>
+								<!--
+								<apex:outputPanel style="padding:0 5px 0 0px;">|</apex:outputPanel>
+								-->
+								<apex:commandLink value="Next" action="{!paginator.next}"
+									rendered="{!IF(paginator.hasNext,'true','false')}" onclick="deselectSelectAll();"
+									status="getClientStatus" rerender="mainTable"/>
+								<apex:outputText value=" Next" rendered="{!IF(NOT(paginator.hasNext),'true','false')}"/>
+								<img class="{!IF(paginator.hasNext,'next','nextoff')}" src="/s.gif" id="imgNext"/>
+							</span>
+							<span class="right">
+								<apex:outputText value="Page {!paginator.pageNumberDisplayFriendly} of {!paginator.pageCount}"/>
+							</span>
+						</div>
+						<div class="clearingBox"></div>
+						</apex:outputPanel>
+							<!--
+							<apex:outputPanel >
+								<apex:outputText value="Page {!paginator.pageNumberDisplayFriendly} of {!paginator.pageCount} in {!paginator.recordCount} Results"/>
+								<apex:outputPanel ><br /></apex:outputPanel>
+								<apex:commandLink value="Previous" action="{!paginator.previous}"
+									rendered="{!IF(paginator.hasPrevious,'true','false')}" onclick="deselectSelectAll();" />
+								<apex:outputText value="Previous" rendered="{!IF(NOT(paginator.hasPrevious),'true','false')}"/>
+								<apex:outputPanel > | </apex:outputPanel>
+								<apex:commandLink value="Next" action="{!paginator.next}"
+									rendered="{!IF(paginator.hasNext,'true','false')}" onclick="deselectSelectAll();"/>
+								<apex:outputText value=" Next" rendered="{!IF(NOT(paginator.hasNext),'true','false')}"/>
+							</apex:outputPanel>
+							-->
+						</apex:facet>
+
+	        	
+	        	</apex:pageBlockTable>       
+        	</apex:pageBlock>
+        </apex:outputPanel>
+	</apex:form>
+</apex:page>

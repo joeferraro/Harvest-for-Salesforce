@@ -1,0 +1,98 @@
+<apex:page controller="HarvestSetupController" action="{!init}" tabStyle="Harvest_Setup__tab" title="Harvest Setup">
+
+    <apex:sectionHeader title="Harvest for Salesforce" subtitle="Setup"/>
+    <apex:form >         
+        <apex:outputPanel id="setupWrapper">
+    		<apex:pageMessages />
+            <apex:pageBlock title="Harvest for Salesforce Setup">
+                <apex:pageBlockButtons location="top">
+                    <table style="width:auto;">
+                    	<tr>
+                    		<td style="vertical-align:middle;" valign="middle">
+                    			<apex:commandButton value="Save Settings" status="status" action="{!save}"/>
+                    		</td>
+                    		<td style="vertical-align:middle;" valign="middle">
+                    			<apex:outputPanel id="scheduleTogglePanel" rendered="{!settings.Subdomain__c != null && settings.Username__c != null && settings.Password__c != null}">
+	                    			<apex:commandButton value="Start Inbound Sync" action="{!startInboundSync}" rendered="{!not(inboundScheduled)}"/>
+	                    			<apex:commandButton value="Stop Inbound Sync" action="{!stopInboundSync}" rendered="{!inboundScheduled}"/>
+                    			</apex:outputPanel>
+                    		</td>
+                    		<td style="vertical-align:middle;" valign="middle">
+						        <apex:actionStatus id="status">
+						        	<apex:facet name="start">
+						        		<apex:image value="{!$Resource.loading}" width="16"/>
+						        	</apex:facet>
+						        </apex:actionStatus>
+                    		</td>
+                    		<td style="vertical-align:middle;" valign="middle">
+                    			<apex:commandButton value="Refresh from Harvest" status="status" action="{!runInboundSync}"/>
+                    		</td>
+                    	</tr>
+                    </table>
+
+
+                </apex:pageBlockButtons>
+                <apex:pageBlockSection columns="1" title="Harvest Credentials" collapsible="false">
+                    <apex:inputField value="{!settings.Subdomain__c}" style="width:200px;"/>
+                    <apex:inputField value="{!settings.Username__c}" style="width:200px;"/>
+	                <apex:pageBlockSectionItem > 
+	                    <apex:outputLabel for="pw" value="Password"/>
+	                    <apex:inputSecret id="pw" value="{!settings.Password__c}" redisplay="true" style="width:200px;"/>
+	                </apex:pageBlockSectionItem>
+	                <apex:inputField value="{!settings.SSL__c}"/>
+	                <apex:pageBlockSectionItem > 
+	                    <apex:outputLabel for="verify" value=""/>
+	                    <apex:outputPanel id="testPanel">
+		                    <table style="width:auto;">
+		                    	<tr>
+		                    		<td style="vertical-align:middle;" valign="middle">
+		                    			<apex:commandButton value="Test Connection" action="{!testConnection}" status="status" rerender="testPanel"/>
+		                    		</td>
+		                    		<td style="padding-left:5px;vertical-align:middle;" valign="middle">
+										<apex:image value="{!URLFOR($Resource.harvest, '/images/accept.png')}" rendered="{!connectionStatus == 'ok'}"/>
+										<apex:image value="{!URLFOR($Resource.harvest, '/images/exclamation.png')}" rendered="{!connectionStatus == 'failed'}"/>
+		                    		</td>
+		                    	</tr>
+		                    </table>
+	                    </apex:outputPanel>
+	                </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>
+                <apex:outputPanel id="optsAndActionsPanel" rendered="{!settings.Subdomain__c != null && settings.Username__c != null && settings.Password__c != null}">
+	                <apex:pageBlockSection columns="2" title="Integration Options" collapsible="false">
+	                    <apex:inputField value="{!settings.Create_Harvest_Project_Automatically__c}"/>
+	                    <apex:inputField value="{!settings.Delete_Client_in_Harvest__c}"/>
+	                </apex:pageBlockSection>
+	                <apex:pageBlockSection columns="1" title="Import from Harvest" collapsible="false">
+	                    <apex:pageBlockSectionItem >
+	                        <apex:commandLink action="{!goToClientImportWizard}">
+	                            Harvest Clients
+	                        </apex:commandLink>
+	                    </apex:pageBlockSectionItem>
+	                    <!--
+	                    <apex:pageBlockSectionItem >
+	                        <apex:outputLink >
+	                            Harvest Client Contacts
+	                        </apex:outputLink>
+	                    </apex:pageBlockSectionItem>
+	                    -->
+	                </apex:pageBlockSection>                
+	                <apex:pageBlockSection columns="1" title="Export to Harvest" collapsible="false" rendered="false">
+	                    <apex:pageBlockSectionItem >
+	                        <apex:commandLink action="{!goToClientExportWizard}">
+	                            Salesforce Accounts
+	                        </apex:commandLink>
+	                    </apex:pageBlockSectionItem>
+	                    <!-- 
+	                    <apex:pageBlockSectionItem >
+	                        <apex:outputLink >
+	                            Salesforce Contacts
+	                        </apex:outputLink>
+	                    </apex:pageBlockSectionItem>
+	                    -->
+	                </apex:pageBlockSection>
+                </apex:outputPanel>
+            </apex:pageBlock>
+        </apex:outputPanel>
+    </apex:form> 
+    
+</apex:page>

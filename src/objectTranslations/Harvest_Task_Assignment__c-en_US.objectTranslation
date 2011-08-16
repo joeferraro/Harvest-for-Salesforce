@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Harvest Task Assignment</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Harvest Task Assignments</value>
+    </caseValues>
+    <fields>
+        <label><!-- Billable --></label>
+        <name>Billable__c</name>
+    </fields>
+    <fields>
+        <label><!-- Budget --></label>
+        <name>Budget__c</name>
+    </fields>
+    <fields>
+        <label><!-- Deactivated --></label>
+        <name>Deactivated__c</name>
+    </fields>
+    <fields>
+        <label><!-- Harvest ID --></label>
+        <name>Harvest_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Hourly rate --></label>
+        <name>Hourly_rate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Id --></label>
+        <name>Project_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project --></label>
+        <name>Project__c</name>
+        <relationshipLabel><!-- Tasks --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Task Id --></label>
+        <name>Task_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Task --></label>
+        <name>Task__c</name>
+        <relationshipLabel><!-- Projects --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Harvest Task Assignment Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

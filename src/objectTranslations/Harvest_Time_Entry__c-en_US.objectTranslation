@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Harvest Time Entry</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Harvest Time Entries</value>
+    </caseValues>
+    <fields>
+        <label><!-- Created At --></label>
+        <name>Created_At__c</name>
+    </fields>
+    <fields>
+        <label><!-- Harvest ID --></label>
+        <name>Harvest_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Hours --></label>
+        <name>Hours__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project --></label>
+        <name>Project__c</name>
+        <relationshipLabel><!-- Time Entries --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Date --></label>
+        <name>Spent_at__c</name>
+    </fields>
+    <fields>
+        <label><!-- Task --></label>
+        <name>Task__c</name>
+        <relationshipLabel><!-- Time Entries --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Timer Started At --></label>
+        <name>Timer_Started_At__c</name>
+    </fields>
+    <layouts>
+        <layout>Harvest Time Entry Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,12 @@
+<apex:page standardController="Account" extensions="HarvestCreateClientController">
+	<apex:sectionHeader title="{!Account.Name}" subtitle="Merge Result"/>
+	<apex:form id="form"> 
+		<apex:pageBlock id="matchBlock">
+			<apex:pageBlockButtons location="top">
+				<apex:commandButton value="Go back to {!Account.Name}" action="{!finish}"/>
+			</apex:pageBlockButtons>
+			<apex:pageMessage summary="Success!  Please click 'Go Back to {!Account.Name}' to complete the merge process." 
+				severity="confirm" strength="1" />
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

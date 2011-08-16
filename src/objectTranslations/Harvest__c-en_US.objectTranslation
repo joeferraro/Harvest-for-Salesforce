@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Harvest</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Harvest</value>
+    </caseValues>
+    <fields>
+        <help><!-- If selected, a Harvest Project will be created automatically in Harvest when a Salesforce Opportunity is won --></help>
+        <label><!-- Create Harvest Project Automatically --></label>
+        <name>Create_Harvest_Project_Automatically__c</name>
+    </fields>
+    <fields>
+        <label><!-- CronTriggerId --></label>
+        <name>CronTriggerId__c</name>
+    </fields>
+    <fields>
+        <help><!-- If selected, when a Salesforce Account is deleted, its corresponding Harvest Client will be deleted (or archived) in Harvest --></help>
+        <label><!-- Delete Client in Harvest --></label>
+        <name>Delete_Client_in_Harvest__c</name>
+    </fields>
+    <fields>
+        <label><!-- Enable Inbound Sync (do not use) --></label>
+        <name>Enable_Inbound_Sync__c</name>
+    </fields>
+    <fields>
+        <label><!-- InboundLastRunDateTime --></label>
+        <name>InboundLastRunDateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Key --></label>
+        <name>Key__c</name>
+    </fields>
+    <fields>
+        <help><!-- Harvest password for integration --></help>
+        <label><!-- Password --></label>
+        <name>Password__c</name>
+    </fields>
+    <fields>
+        <help><!-- Does your Harvest account support SSL (https)? --></help>
+        <label><!-- Harvest SSL Support --></label>
+        <name>SSL__c</name>
+    </fields>
+    <fields>
+        <help><!-- Example: https://&lt;THIS IS YOUR SUBDOMAIN&gt;.harvestapp.com --></help>
+        <label><!-- Harvest Subdomain --></label>
+        <name>Subdomain__c</name>
+    </fields>
+    <fields>
+        <help><!-- Harvest username for integration --></help>
+        <label><!-- Username --></label>
+        <name>Username__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

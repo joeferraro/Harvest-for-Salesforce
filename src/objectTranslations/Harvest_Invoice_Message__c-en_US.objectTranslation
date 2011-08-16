@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Harvest Invoice Message</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Harvest Invoice Messages</value>
+    </caseValues>
+    <fields>
+        <label><!-- Body --></label>
+        <name>Body__c</name>
+    </fields>
+    <fields>
+        <label><!-- Created At --></label>
+        <name>Created_At__c</name>
+    </fields>
+    <fields>
+        <label><!-- Full Recipient List --></label>
+        <name>Full_Recipient_List__c</name>
+    </fields>
+    <fields>
+        <label><!-- Harvest ID --></label>
+        <name>Harvest_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Invoice --></label>
+        <name>Invoice__c</name>
+        <relationshipLabel><!-- Invoice Messages --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Send me a copy --></label>
+        <name>Send_me_a_copy__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sent By Email --></label>
+        <name>Sent_By_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sent By --></label>
+        <name>Sent_By__c</name>
+    </fields>
+    <layouts>
+        <layout>Harvest Invoice Message Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

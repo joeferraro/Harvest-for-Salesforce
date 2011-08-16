@@ -1,0 +1,115 @@
+<apex:page controller="HarvestClientExportWizard" tabStyle="Harvest_Setup__tab" action="{!init}">
+	<apex:includeScript value="{!URLFOR($Resource.harvest, '/js/selectAll.js')}"/>
+	<script>
+		function uncheck(id) {
+			document.getElementById(id).checked = false;
+		}
+	
+	</script>
+	<apex:sectionHeader title="Harvest for Salesforce" subtitle="Export Accounts" description="Select Salesforce Accounts you want to create as Harvest Clients"/>
+    <apex:form id="form">           
+       	<apex:pageBlock title="Accounts" id="searchBlock">
+	        <apex:pageBlockButtons location="top">
+		        <table style="width:600px;">
+		        	<tr>  
+		        		<td style="vertical-align:middle;width:345px;" valign="middle">
+					        <apex:inputText value="{!accountName}"/>
+					        <apex:commandButton value="Search" action="{!doaccountsearch}" rerender="accountsearch" status="getClientStatus"/>
+					        <apex:commandButton value="Add to Export Queue" action="{!putInExportQueue}" rerender="accountsearch, queueWrapper"
+					        	oncomplete="uncheck('{!$Component.form.searchBlock.searchSection.resultsTable.selectAllToExport}')"
+					        	status="getClientStatus"/>
+				        </td>
+			   			<td style="vertical-align:middle;" valign="middle">
+					        <apex:actionStatus id="getClientStatus">
+					        	<apex:facet name="start">
+					        		<apex:image value="{!$Resource.loading}" width="16"/>
+					        	</apex:facet>
+					        </apex:actionStatus>
+		        		</td>
+					</tr>
+				</table>
+	        </apex:pageBlockButtons>
+	        <apex:outputPanel id="accountsearch">
+	        	
+
+	        	<apex:pageBlockSection columns="1" id="searchSection">
+		        	<apex:pageBlockTable value="{!accountList}" var="aw" id="resultsTable">
+		        		<apex:column headerValue="" width="30" id="resultsTableSelectColumn">
+		        			<apex:facet name="header">
+		        				<apex:inputCheckbox id="selectAllToExport" onclick="selectAll('{!$Component.form.searchBlock.searchSection.resultsTable}')"/>
+		        			</apex:facet> 
+		        			<apex:inputCheckbox value="{!aw.isSelected}"/>
+		        		</apex:column>
+		        		<apex:column value="{!aw.a.name}"/>
+		        		<apex:column value="{!aw.a.billingstreet}"/>
+		        		<apex:column value="{!aw.a.billingcity}"/>
+		        		<apex:column value="{!aw.a.billingstate}"/>
+		        		<apex:column value="{!aw.a.billingpostalcode}"/>
+		        		<apex:column value="{!aw.a.billingcountry}"/>
+		        		<apex:column value="{!aw.a.website}"/>
+		        	</apex:pageBlockTable>
+		        	
+					<apex:panelGrid columns="5" style="height:25px;">
+					    <apex:commandLink action="{!first}" rerender="accountsearch" status="pageStatus">
+					    	First
+				    	</apex:commandlink>
+					    <apex:commandLink action="{!previous}" rendered="{!hasPrevious}" rerender="accountsearch" status="pageStatus">
+					    	Previous
+				    	</apex:commandlink>
+					    <apex:commandLink action="{!next}" rendered="{!hasNext}" rerender="accountsearch" status="pageStatus">
+					    	Next
+				    	</apex:commandlink>
+					    <apex:commandLink action="{!last}" rerender="accountsearch" status="pageStatus">
+					    	Last
+				    	</apex:commandlink>
+				        <apex:actionStatus id="pageStatus">
+				        	<apex:facet name="start">
+				        		<apex:image value="{!$Resource.loading}" width="16"/>
+				        	</apex:facet>
+				        </apex:actionStatus>
+					</apex:panelGrid>
+	        	</apex:pageBlockSection>
+        	</apex:outputPanel>
+       	</apex:pageBlock>
+       	<apex:outputPanel id="queueWrapper">
+	        <apex:pageBlock title="{!accountsForExport.size} Accounts to Export" rendered="{!accountsForExport.size > 0}" id="exportBlock">	
+		        <apex:pageBlockButtons location="top">
+			        <table style="width:600px;">
+			        	<tr>  
+			        		<td style="vertical-align:middle;width:270px;" valign="middle">
+						        <apex:commandButton value="Create Harvest Clients" action="{!doExport}" rerender="queueWrapper" status="exportStatus"/>
+						        <apex:commandButton value="Remove From Queue" action="{!doRemoveFromQueue}" rerender="queueWrapper" status="exportStatus"/>
+					        </td>
+			        		<td style="vertical-align:middle;" valign="middle">
+						        <apex:actionStatus id="exportStatus">
+						        	<apex:facet name="start">
+						        		<apex:image value="{!$Resource.loading}" width="16"/>
+						        	</apex:facet>
+						        </apex:actionStatus>
+					        </td>
+				        </tr>
+			        </table>
+		        </apex:pageBlockButtons>
+	        	<apex:outputPanel id="queue">
+		        	<apex:pageBlockSection columns="1" id="exportSection">
+			        	<apex:pageBlockTable value="{!accountsForExport}" var="aw" id="exportTable">
+			        		<apex:column headerValue="" width="30">
+								<apex:facet name="header">
+		        					<apex:inputCheckbox id="selectAllToExport" onclick="selectAll('{!$Component.form.exportBlock.exportSection.exportTable}')"/>
+								</apex:facet>
+								<apex:inputCheckbox value="{!aw.isSelected}"/>
+			        		</apex:column>
+			        		<apex:column value="{!aw.a.name}"/>
+			        		<apex:column value="{!aw.a.billingstreet}"/>
+			        		<apex:column value="{!aw.a.billingcity}"/>
+			        		<apex:column value="{!aw.a.billingstate}"/>
+			        		<apex:column value="{!aw.a.billingpostalcode}"/>
+			        		<apex:column value="{!aw.a.billingcountry}"/>
+			        		<apex:column value="{!aw.a.website}"/>
+			        	</apex:pageBlockTable>
+		        	</apex:pageBlockSection>
+	        	</apex:outputPanel>       
+	       	</apex:pageBlock>
+       	</apex:outputPanel>
+	</apex:form>
+</apex:page>

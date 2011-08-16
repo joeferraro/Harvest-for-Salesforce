@@ -1,0 +1,41 @@
+<apex:page standardController="Account" extensions="HarvestCreateClientController" action="{!init}">
+	<apex:includeScript value="{!URLFOR($Resource.harvest, '/js/deselecter.js')}"/>
+	<apex:sectionHeader title="{!Account.Name}" subtitle="Create in Harvest"/>
+	<apex:form id="form"> 
+		<apex:pageBlock id="errorBlock" rendered="{!Account.Harvest_ID__c != null}">
+			<apex:pageBlockButtons location="top">
+				<apex:commandButton value="Go Back" action="{!cancel}"/>
+				<apex:commandButton value="Refresh Account" action="{!finish}"/>
+			</apex:pageBlockButtons>
+			<apex:outputPanel id="pageMessages">
+		        <apex:pageMessages />
+		    </apex:outputPanel> 
+		</apex:pageBlock>
+		<apex:pageBlock id="matchBlock" rendered="{!matchingClients.size > 0}">
+			<apex:pageMessage summary="The following Harvest Clients match the name '{!Account.Name}', please select a Harvest Client to merge your Account with." severity="info" strength="1" />
+			<apex:pageBlockButtons location="top">
+				<apex:commandButton value="Merge" action="{!doMerge}" rendered="{!matchingClients.size > 0}"/>
+				<apex:commandButton value="Cancel" action="{!cancel}"/>
+			</apex:pageBlockButtons>
+			<apex:pageBlockTable value="{!matchingClients}" var="c" id="table">
+				<apex:column width="30">
+					<apex:inputCheckbox value="{!c.isSelected}" onclick="deSelectOthers('{!$Component.form.matchBlock}', this)"/>
+				</apex:column>
+				<apex:column headerValue="Name" value="{!c.client.Name}"/>
+				<apex:column headerValue="Id" value="{!c.client.Id}"/>
+				<apex:column headerValue="Details" value="{!c.client.Details}"/>
+			</apex:pageBlockTable>
+		</apex:pageBlock>
+		<apex:pageBlock id="createBlock" rendered="{!matchingClients.size == 0 && Account.Harvest_ID__c == null}">
+			<apex:pageBlockButtons location="top">
+				<apex:commandButton value="Create Client" action="{!doCreateClient}" rendered="{!matchingClients.size == 0}"/>
+				<apex:commandButton value="Cancel" action="{!cancel}"/>
+			</apex:pageBlockButtons>
+			<apex:outputPanel >
+				<div style="padding:5px;border:1px solid #ccc;background-color:#fff;">
+					A new Harvest Client will be created for <b>{!Account.Name}</b>.  Click "Create Client" to complete.
+				</div>
+			</apex:outputPanel>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>
