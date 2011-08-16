@@ -1,4 +1,4 @@
-Salesforce for Harvest
+Harvest for Salesforce
 ======================
 
 Native Salesforce.com integration with the Harvest API.  Features Harvest Clients, Contacts, Projects, Tasks integration with Salesforce Accounts, Contact, Opportunities, Projects, and Users.
