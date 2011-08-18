@@ -6,10 +6,6 @@
     </types>
     <types>
         <members>*</members>
-        <name>ApexComponent</name>
-    </types>
-    <types>
-        <members>*</members>
         <name>ApexPage</name>
     </types>
     <types>
@@ -22,14 +18,6 @@
     </types>
     <types>
         <members>*</members>
-        <name>CustomLabels</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>CustomPageWebLink</name>
-    </types>
-    <types>
-        <members>*</members>
         <name>CustomTab</name>
     </types>
     <types>
@@ -39,18 +27,6 @@
         <name>Document</name>
     </types>
     <types>
-        <members>*</members>
-        <name>HomePageComponent</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>Layout</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>Letterhead</name>
-    </types>
-    <types>
         <members>Harvest</members>
         <members>Harvest_SSL</members>
         <name>RemoteSiteSetting</name>
@@ -58,25 +34,6 @@
     <types>
         <members>*</members>
         <name>StaticResource</name>
-    </types>
-    <types>
-        <members>Harvest_Estimate_Line_Item__c</members>
-        <members>Harvest_Estimate__c</members>
-        <members>Harvest_Expense_Category__c</members>
-        <members>Harvest_Expense__c</members>
-        <members>Harvest_Invoice_Category__c</members>
-        <members>Harvest_Invoice_Line_Item__c</members>
-        <members>Harvest_Invoice_Message__c</members>
-        <members>Harvest_Invoice_Payment__c</members>
-        <members>Harvest_Invoice__c</members>
-        <members>Harvest_Project__c</members>
-        <members>Harvest_Task_Assignment__c</members>
-        <members>Harvest_Task__c</members>
-        <members>Harvest_Time_Entry__c</members>
-        <members>Harvest_User_Assignment__c</members>
-        <members>Harvest_User__c</members>
-        <members>Harvest__c</members>
-        <name>Workflow</name>
     </types>
     <version>20.0</version>
 </Package>
