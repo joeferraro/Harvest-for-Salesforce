@@ -21,7 +21,10 @@ global class HarvestInboundSyncController {
 
         List<HarvestUser> hUsers = h.getUsers();
         List<HarvestTask> hTasks = h.getTasks();
-        List<HarvestInvoice> hInvoices = h.getInvoices();
+        // quick fix: don't get invoices
+        // List<HarvestInvoice> hInvoices = h.getInvoices();
+        List<HarvestInvoice> hInvoices = new List<HarvestInvoice>();
+        //
         if (hInvoices.size() == 50)
         	hInvoices.addAll(h.getInvoicesByPage(2));
     	if (hInvoices.size() == 100)

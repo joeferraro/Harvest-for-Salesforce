@@ -307,7 +307,22 @@ public virtual class Harvest {
     		project.notes = node.getChildElement('notes', null).getText();
     		project.budgetBy = node.getChildElement('budget-by', null).getText();
     		project.budget = node.getChildElement('budget', null).getText();
-    		project.fees = node.getChildElement('fees', null).getText();
+    		//project.fees = node.getChildElement('fees', null).getText(); seems to be off the model
+    		project.hourlyRate  = HarvestUtil.convertDecimal(node.getChildElement('hourly-rate', null).getText());
+            project.notifyWhenOverBudget  = HarvestUtil.convertBoolean(node.getChildElement('notify-when-over-budget', null).getText());
+    		project.overBudgetPercentage  = HarvestUtil.convertDecimal(node.getChildElement('over-budget-notification-percentage', null).getText());
+            project.overBudgetNotifiedAt  = node.getChildElement('over-budget-notified-at', null).getText();
+    		project.budgetToAll  = HarvestUtil.convertBoolean(node.getChildElement('show-budget-to-all', null).getText());
+            project.createdAt  = HarvestUtil.convertDateTime(node.getChildElement('created-at', null).getText());
+    		project.updatedAt  = HarvestUtil.convertDateTime(node.getChildElement('updated-at', null).getText());
+    		project.endsOn = HarvestUtil.convertDate(node.getChildElement('ends-on', null).getText());
+    		project.estimate  = HarvestUtil.convertDecimal(node.getChildElement('estimate', null).getText());
+    		project.estimateBy  = node.getChildElement('estimate-by', null).getText();
+    		project.hintEarliestRecordAt  = HarvestUtil.convertDate(node.getChildElement('hint-earliest-record-at', null).getText());
+    		project.hintLatestRecordAt  = HarvestUtil.convertDate(node.getChildElement('hint-latest-record-at', null).getText());
+    		project.costBudget  = node.getChildElement('cost-budget', null).getText();
+    		project.costBuddgetIncludeExpenses  = HarvestUtil.convertBoolean(node.getChildElement('cost-budget-include-expenses', null).getText());
+    		
 		}	
 		return project;
 	}

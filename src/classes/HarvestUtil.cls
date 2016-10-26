@@ -209,6 +209,15 @@ public class HarvestUtil {
         }
     }
     
+    public static Date convertDate(String s) {
+        if (s == '' || s == null) {
+            return null;
+        } else {
+            String[] dateArray = s.split('-');
+            return Date.newInstance(Integer.valueOf(dateArray[0]), Integer.valueOf(dateArray[1]), Integer.valueOf(dateArray[2]));
+        }
+    }
+    
     public static DateTime convertDateTime(String s) {
         if (s == '' || s == null) {
             return null;
