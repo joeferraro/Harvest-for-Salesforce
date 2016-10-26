@@ -1,0 +1,115 @@
+<apex:page controller="HarvestSetupController" action="{!init}">
+	<apex:sectionHeader title="Harvest for Salesforce" subtitle="Setup"/> 
+    <!--
+    <p><b>User Info</b></p> 
+    <apex:outputText value="{!user.id}"/> <br />
+    <apex:outputText value="{!user.email}"/><br />
+    <apex:outputText value="{!user.timeZone}"/><br />
+    <apex:outputText value="{!user.isAdmin}"/><br />
+    <br />
+    <apex:outputText value="{!loginResponse}"/>
+    <br />
+    -->
+    <apex:form >         
+        <apex:outputPanel id="clients">
+        	<apex:pageBlock title="Clients">
+		        <apex:pageBlockButtons location="top">
+			        <apex:commandButton value="Get All Clients" action="{!doGetClients}" status="getClientStatus" rerender="clients"/>
+			        <apex:commandButton value="Import Selected Clients" action="{!doImportClients}" status="getClientStatus" rerender="clients"/>
+			        <apex:inputText value="{!clientId}"/>
+			        <apex:commandButton value="Get Client By Id" action="{!doGetClient}" status="getClientStatus" rerender="clients"/>
+			        <apex:actionStatus id="getClientStatus">
+			        	<apex:facet name="start">
+			        		<apex:image value="{!$Resource.loading}" width="16"/>
+			        	</apex:facet>
+			        </apex:actionStatus>
+		        </apex:pageBlockButtons>
+	        	<apex:pageBlockTable value="{!clients}" var="c">
+	        		<apex:column headerValue="" width="30">
+	        			<apex:inputCheckbox value="{!c.isSelected}"/>
+	        		</apex:column>
+	        		<apex:column headerValue="Harvest Id" value="{!c.client.id}"/>
+	        		<apex:column headerValue="Client Name" value="{!c.client.name}"/>
+	        		<apex:column headerValue="Active Client">
+	        			<apex:image value="{!if(c.client.active == true, $Resource.checked, $Resource.unchecked)}"/>
+	        		</apex:column>
+	        		<apex:column headerValue="Details" value="{!c.client.details}"/>
+	        		<apex:column headerValue="Import Result" value="{!c.importResult}"/>
+	        	</apex:pageBlockTable>       
+	        </apex:pageBlock>
+        </apex:outputPanel>
+        
+        <apex:outputPanel id="contacts">
+        	<apex:pageBlock title="Contacts">
+		        <apex:pageBlockButtons location="top">
+			        <apex:commandButton value="Get All Contacts" action="{!doGetContacts}" status="getContactStatus" rerender="contacts"/>
+			        <apex:commandButton value="Import Selected Contacts" action="{!doImportContacts}" status="getContactStatus" rerender="contacts"/>
+			        <apex:inputText value="{!contactId}"/>
+			        <apex:commandButton value="Get Contact By Id" action="{!doGetContact}" status="getContactStatus" rerender="contacts"/>
+			        <apex:actionStatus id="getContactStatus">
+			        	<apex:facet name="start">
+			        		<apex:image value="{!$Resource.loading}" width="16"/>
+			        	</apex:facet> 
+			        </apex:actionStatus>
+		        </apex:pageBlockButtons>
+	        	<apex:pageBlockTable value="{!contacts}" var="c">
+	        		<apex:column headerValue="" width="30">
+	        			<apex:inputCheckbox value="{!c.isSelected}"/>
+	        		</apex:column>
+	        		<apex:column headerValue="Harvest Id" value="{!c.contact.id}"/>	
+	        		<apex:column headerValue="First Name" value="{!c.contact.firstName}"/>	
+	        		<apex:column headerValue="Last Name" value="{!c.contact.lastName}"/>	
+	        		<apex:column headerValue="Email" value="{!c.contact.email}"/>	
+	        		<apex:column headerValue="Phone" value="{!c.contact.phone}"/>	
+	        		<apex:column headerValue="Mobile" value="{!c.contact.mobile}"/>	
+	        		<apex:column headerValue="Fax" value="{!c.contact.fax}"/>
+	        		<apex:column headerValue="Harvest Client Id" value="{!c.contact.clientId}"/>
+	        		<apex:column headerValue="Import Result" value="{!c.importResult}"/>
+	        	</apex:pageBlockTable>        
+	        </apex:pageBlock>
+        </apex:outputPanel> 
+        
+        <apex:outputPanel id="projects">
+        	<apex:pageBlock title="Projects">
+		        <apex:pageBlockButtons location="top">
+			        <apex:commandButton value="Get All Projects" action="{!doGetProjects}" status="getProjectStatus" rerender="projects"/>
+			        <apex:inputText value="{!projectId}"/>
+			        <apex:commandButton value="Get Project By Id" action="{!doGetProject}" status="getProjectStatus" rerender="projects"/>
+			        <apex:actionStatus id="getProjectStatus">
+			        	<apex:facet name="start">
+			        		<apex:image value="{!$Resource.loading}" width="16"/>
+			        	</apex:facet>
+			        </apex:actionStatus>
+		        </apex:pageBlockButtons>
+	        	<apex:pageBlockTable value="{!projects}" var="p">
+	        		<apex:column headerValue="Harvest Id" value="{!p.project.id}"/>	        	
+	        		<apex:column headerValue="Project Name" value="{!p.project.name}"/>
+	        		<apex:column headerValue="Code" value="{!p.project.code}"/>
+	        		<apex:column headerValue="Budget" value="{!p.project.budget}"/>
+	        		<apex:column headerValue="Notes" value="{!p.project.notes}"/>
+	        	</apex:pageBlockTable>       
+	        </apex:pageBlock>
+        </apex:outputPanel>
+        
+        <apex:outputPanel id="users">
+        	<apex:pageBlock title="Users">
+		        <apex:pageBlockButtons location="top">
+			        <apex:commandButton value="Get All Users" action="{!doGetUsers}" status="getUserStatus" rerender="users"/>
+			        <apex:inputText value="{!userId}"/>
+			        <apex:commandButton value="Get Project By Id" action="{!doGetUser}" status="getUserStatus" rerender="users"/>
+			        <apex:actionStatus id="getUserStatus">
+			        	<apex:facet name="start">
+			        		<apex:image value="{!$Resource.loading}" width="16"/>
+			        	</apex:facet>
+			        </apex:actionStatus>
+		        </apex:pageBlockButtons> 
+	        	<apex:pageBlockTable value="{!users}" var="u">
+	        		<apex:column headerValue="Harvest Id" value="{!u.user.id}"/>	
+	        		<apex:column headerValue="First Name" value="{!u.user.firstName}"/>
+	        		<apex:column headerValue="Last Name" value="{!u.user.lastName}"/>
+	        		<apex:column headerValue="Email" value="{!u.user.email}"/>
+	        	</apex:pageBlockTable>       
+	        </apex:pageBlock>
+        </apex:outputPanel>
+    </apex:form> 
+</apex:page>

@@ -1,0 +1,128 @@
+<apex:page controller="HarvestClientImportWizard" tabStyle="Harvest_Setup__tab">
+	<apex:includeScript value="{!URLFOR($Resource.harvest, '/js/deselecter.js')}"/>
+	<apex:sectionHeader title="Harvest for Salesforce" subtitle="Import Clients" 
+		description="Please review the information below and click Finish to complete the import"/>
+    <apex:form id="form">          
+        <apex:outputPanel id="outerWrapper">
+        	<apex:pageBlock title="Review your import" mode="edit" id="mainBlock">
+        		<apex:pageBlockButtons id="buttons" location="top">
+        			<apex:outputPanel id="buttonPanel">
+	        			<apex:commandButton value="Finish" action="{!finishImport}" disabled="{!conflicts != conflictsResolved}"/>
+        			</apex:outputPanel>
+        			<apex:commandButton value="Merge All Conflicts" action="{!mergeAll}" id="btnMergeAll"/>
+        			<apex:commandButton value="Cancel" action="{!cancel}"/>
+        			<apex:outputPanel style="margin-left:10px;" id="conflictPanel" rendered="{!conflicts > 0}">
+        				<apex:outputText style="font-weight:bold;color:{!if(conflicts == conflictsResolved, 'green', 'red')}" value="{!conflictsResolved} of {!conflicts} conflicts resolved"/>
+       				</apex:outputPanel>
+        		</apex:pageBlockButtons>
+				<apex:repeat value="{!clientsForImport}" var="c" id="importRepeat">
+					<apex:outputPanel id="clientNameSection">
+					<!--  <apex:pageBlockSection title="{!c.client.Name}" columns="1" collapsible="false" id="clientNameSection"> -->
+						<div class="pbSubheader first tertiaryPalette">
+							<h3>{!c.client.Name}</h3>
+						</div>
+						<apex:outputPanel id="confirmationWrapper">
+							<apex:outputPanel rendered="{!c.matchingAccounts.size == 0}" id="confirmationWrapperInner">
+								<div style="padding:5px;background-color:#fff;border:1px solid #ccc;margin:10px;">
+									<table>
+										<tr>
+											<td>
+												<apex:image value="{!URLFOR($Resource.harvest, '/images/accept.png')}" rendered="{!c.matchingAccounts.size == 0}"/>
+											</td>
+											<td style="padding-left:5px;vertical-align:middle;" valign="middle">
+												<apex:outputText style="font-weight:bold" value="1 "/>
+												<apex:outputText value="Salesforce Account will be created for "/>
+												<apex:outputText style="font-weight:bold;" value="{!c.client.Name} "/>
+												<apex:outputText value="with the Harvest Id "/> 
+												<apex:outputText style="font-weight:bold;" value="{!c.client.id}"/>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</apex:outputPanel>
+						</apex:outputPanel>
+						<apex:outputPanel id="matchingWrapper">
+							<apex:outputPanel rendered="{!c.matchingAccounts.size > 0}">
+								<div style="padding:5px;background-color:#fff;border:1px solid #ccc;margin:10px;">
+
+										<table>
+											<tr>
+												<td style="vertical-align:middle;" valign="middle">
+													<apex:image value="{!URLFOR($Resource.harvest, '/images/exclamation.png')}" rendered="{!c.matchingAccounts.size > 0}"/>
+												</td>
+												<td style="padding-left:5px;vertical-align:middle;" valign="middle">
+													<apex:outputText style="font-weight:bold" value="{!c.matchingAccounts.size}"/>
+													<apex:outputText value=" Salesforce {!if(c.matchingAccounts.size == 1, 'Account', 'Accounts')} matched "/>
+													<apex:outputText style="font-weight:bold" value="{!c.client.name}"/>
+													<apex:outputText value=", would you like to "/>
+													<apex:commandLink style="font-weight:bold;" value="Create" action="{!setAction}" status="setAction" 
+														rerender="{!$Component.form.mainBlock.importRepeat.clientNameSection}, {!$Component.form.mainBlock.buttons.conflictPanel}, {!$Component.form.mainBlock.buttons.buttonPanel}">
+														<apex:param name="id" value="{!c.client.id}"/>														
+														<apex:param name="action" value="create"/>														
+													</apex:commandLink>
+													<apex:outputText value=" a new Account or "/>
+													<apex:commandLink style="font-weight:bold;" value="Merge" action="{!setAction}" status="setAction" 
+														rerender="{!$Component.form.mainBlock.importRepeat.clientNameSection}, {!$Component.form.mainBlock.buttons.conflictPanel}, {!$Component.form.mainBlock.buttons.buttonPanel}">
+														<apex:param name="id" value="{!c.client.id}"/>														
+														<apex:param name="action" value="merge"/>														
+													</apex:commandLink>
+													<apex:outputText value=" with an existing Salesforce Account?"/>
+												</td>
+												<td style="padding-left:5px;vertical-align:middle;" valign="middle">
+													<apex:actionStatus id="setAction">
+											        	<apex:facet name="start">
+											        		<apex:image value="{!$Resource.loading}" width="16"/>
+											        	</apex:facet>
+											        </apex:actionStatus>
+												</td>
+											</tr>
+										</table>
+
+								</div>
+							</apex:outputPanel>
+							
+							
+							<apex:outputPanel id="actionCreateWrapper">
+								<apex:outputPanel rendered="{!c.matchingAccounts.size > 0 && c.action == 'create'}">
+									<div style="padding:5px;background-color:#fff;border:1px solid #ccc;margin:10px;">
+										<table>
+											<tr>
+												<td>
+													<apex:image value="{!URLFOR($Resource.harvest, '/images/accept.png')}"/>
+												</td>
+												<td style="padding-left:5px;vertical-align:middle;" valign="middle">
+													<apex:outputText style="font-weight:bold" value="1 "/>
+													<apex:outputText value="Salesforce Account will be created for "/>
+													<apex:outputText style="font-weight:bold;" value="{!c.client.Name} "/>
+													<apex:outputText value="with the Harvest Id "/> 
+													<apex:outputText style="font-weight:bold;" value="{!c.client.id}"/>
+												</td>
+											</tr>
+										</table>
+									</div>
+								</apex:outputPanel>
+							</apex:outputPanel>
+							<div style="padding:5px;margin:10px;display:{!if(c.matchingAccounts.size > 0 && c.action == 'merge','block', 'none')}" id="hh{!$Component.form.mainBlock.importRepeat}">
+							<apex:pageBlockTable value="{!c.matchingAccounts}" var="m" rendered="{!c.matchingAccounts.size > 0 && c.action == 'merge'}" id="matchTable">
+								<apex:column width="30" headerValue="Merge" id="mergeColumn">
+									<apex:inputCheckbox id="mergeSelect" value="{!m.isSelected}" onclick="deSelectOthers('hh{!$Component.form.mainBlock.importRepeat}', this)"/>
+								</apex:column> 
+								<apex:column width="150" value="{!m.a.Name}"/>
+								<apex:column width="150" value="{!m.a.BillingStreet}"/>
+								<apex:column width="150" value="{!m.a.BillingCity}"/>
+								<apex:column width="150" value="{!m.a.BillingState}"/>
+								<apex:column width="150" value="{!m.a.BillingPostalCode}"/>
+								<apex:column width="150" value="{!m.a.Phone}"/>
+								<apex:column width="150" value="{!m.a.Website}"/>
+								<apex:column width="150" headerValue="Owner Name" value="{!m.a.Owner.Name}"/>
+								<apex:column width="50" value="{!m.a.Id}"/>
+							</apex:pageBlockTable>
+							</div>
+						</apex:outputPanel>
+					<!--  </apex:pageBlockSection> -->
+					</apex:outputPanel>
+				</apex:repeat>
+        	</apex:pageBlock>
+        </apex:outputPanel>
+	</apex:form>
+</apex:page>
