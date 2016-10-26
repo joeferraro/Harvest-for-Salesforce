@@ -408,6 +408,7 @@ window.location.reload();
         <masterLabel>Refresh from Harvest</masterLabel>
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
+<<<<<<< HEAD
         <url>{!REQUIRESCRIPT(&quot;/soap/ajax/18.0/connection.js&quot;)}
 {!REQUIRESCRIPT(&quot;/soap/ajax/18.0/apex.js&quot;)}
 var aId = &quot;{!Account.Id}&quot;;
@@ -421,6 +422,21 @@ if (answer) {
 var refreshResult = sforce.apex.execute(&quot;hvst.HarvestAccountRefresh&quot;, &quot;doRefresh&quot;, {accountId:aId});
 window.location.reload();
 } else { }
+=======
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/18.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/18.0/apex.js&quot;)}
+var aId = &quot;{!Account.Id}&quot;;
+var hId = &quot;{!Account.Harvest_ID__c}&quot;;
+if (hId == &apos;&apos;) {
+alert(&quot;This Account does not have a Harvest Id, please use the \&quot;Create Client in Harvest\&quot; button first&quot;);
+} else {
+
+var answer = confirm(&quot;Are you sure you want to refresh from Harvest?&quot;)
+if (answer) {
+var refreshResult = sforce.apex.execute(&quot;hvst.HarvestAccountRefresh&quot;, &quot;doRefresh&quot;, {accountId:aId});
+window.location.reload();
+} else { }
+>>>>>>> 6c6d7c5f6dbfae7da52c776e8fcc0871e58381a2
 }</url>
     </webLinks>
     <webLinks>

@@ -729,10 +729,17 @@
         <masterLabel>Refresh Invoice</masterLabel>
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
+<<<<<<< HEAD
         <url>{!REQUIRESCRIPT(&quot;/soap/ajax/16.0/connection.js&quot;)}
 {!REQUIRESCRIPT(&quot;/soap/ajax/16.0/apex.js&quot;)}
 var hId = &quot;{!Harvest_Invoice__c.Harvest_ID__c}&quot;;
 var refreshResult = sforce.apex.execute(&quot;hvst.HarvestInvoiceSync&quot;, &quot;refreshInvoice&quot;, {invoiceId:hId});
+=======
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/16.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/16.0/apex.js&quot;)}
+var hId = &quot;{!Harvest_Invoice__c.Harvest_ID__c}&quot;;
+var refreshResult = sforce.apex.execute(&quot;hvst.HarvestInvoiceSync&quot;, &quot;refreshInvoice&quot;, {invoiceId:hId});
+>>>>>>> 6c6d7c5f6dbfae7da52c776e8fcc0871e58381a2
 window.location.reload();</url>
     </webLinks>
     <webLinks>

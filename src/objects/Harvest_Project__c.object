@@ -214,6 +214,7 @@
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
         <requireRowSelection>true</requireRowSelection>
+<<<<<<< HEAD
         <url>{!REQUIRESCRIPT(&quot;/soap/ajax/9.0/connection.js&quot;)}
 
 var records = {!GETRECORDIDS(   $ObjectType.Harvest_Project__c )};
@@ -246,6 +247,40 @@ alert(&quot;Number of records deleted: &quot; + numSucceeded);
 }
 }
 window.location.reload();
+=======
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/9.0/connection.js&quot;)}
+
+var records = {!GETRECORDIDS(   $ObjectType.Harvest_Project__c )};
+
+if (records[0] == null) {
+alert(&quot;Please select at least one record.&quot;) }
+else {
+
+var errors = [];
+var result = sforce.connection.deleteIds(records);
+if (result &amp;&amp; result.length){
+var numFailed = 0;
+var numSucceeded = 0;
+for (var i = 0; i &lt; result.length; i++){
+var res = result[i];
+if (res &amp;&amp; res.success == &apos;true&apos;){
+numSucceeded++;
+} else {
+var es = res.getArray(&quot;errors&quot;);
+if (es.length &gt; 0) {
+errors.push(es[0].message);
+}
+numFailed++;
+}
+}
+if (numFailed &gt; 0){
+alert(&quot;Failed: &quot; + numFailed + &quot;\nSucceeded: &quot; + numSucceeded + &quot; \n Due to: &quot; + errors.join(&quot;\n&quot;));
+} else {
+alert(&quot;Number of records deleted: &quot; + numSucceeded);
+}
+}
+window.location.reload();
+>>>>>>> 6c6d7c5f6dbfae7da52c776e8fcc0871e58381a2
 }</url>
     </webLinks>
     <webLinks>
@@ -257,10 +292,17 @@ window.location.reload();
         <masterLabel>Refresh Project</masterLabel>
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
+<<<<<<< HEAD
         <url>{!REQUIRESCRIPT(&quot;/soap/ajax/18.0/connection.js&quot;)}
 {!REQUIRESCRIPT(&quot;/soap/ajax/18.0/apex.js&quot;)} 
 var pId = &quot;{!Harvest_Project__c.Harvest_ID__c}&quot;;
 var refreshResult = sforce.apex.execute(&quot;hvst.HarvestProjectSync&quot;, &quot;refreshProject&quot;, {projectId:pId});
+=======
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/18.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/18.0/apex.js&quot;)} 
+var pId = &quot;{!Harvest_Project__c.Harvest_ID__c}&quot;;
+var refreshResult = sforce.apex.execute(&quot;hvst.HarvestProjectSync&quot;, &quot;refreshProject&quot;, {projectId:pId});
+>>>>>>> 6c6d7c5f6dbfae7da52c776e8fcc0871e58381a2
 window.location.reload();</url>
     </webLinks>
     <webLinks>
