@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
-    <icon>Harvest/Harvest_H_Logo.png</icon>
-    <label>Harvest Setup</label>
-    <mobileReady>false</mobileReady>
-    <motif>Custom293: TV Widescreen</motif>
-    <page>HarvestSetup</page>
-</CustomTab>

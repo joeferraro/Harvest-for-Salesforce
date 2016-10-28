@@ -91,18 +91,37 @@ public class HarvestUtil {
 	}
     
     public static Harvest_Project__c transformProject(HarvestProject hp, Map<String, Id> accountMap) {
+        
         Harvest_Project__c p = new Harvest_Project__c();
+        
         p.Account__c = accountMap.get(hp.clientId);
         p.Name = hp.name;
         p.Bill_by__c = hp.billBy;
         p.Billable__c = hp.billable;
+        
         if (hp.budget != '') p.Budget__c = Double.valueOf(hp.budget);
         else p.Budget__c = null;    
+        
         p.Budget_by__c = getBudgetBy(hp.budgetBy);
         p.Harvest_ID__c = hp.id;
         p.Notes__c = hp.notes;
         p.Project_Code__c = hp.code;
         p.Active__c = hp.active;
+        p.HourlyRate__c = hp.hourlyRate;
+        p.Notify_when_over_Budget__c = hp.notifyWhenOverBudget;
+        p.Over_Budget_Percentage__c = hp.overBudgetPercentage;
+        p.Over_Budget_Notified_at__c = hp.overBudgetNotifiedAt;
+        p.Budget_to_all__c = hp.budgetToAll;
+        p.Created_at__c = hp.createdAt;
+        p.Updated_at__c = hp.updatedAt;
+        p.Ends_on__c = hp.endsOn;
+        p.Estimate__c = hp.estimate;
+        p.Estimate_by__c = hp.estimateBy;
+        p.Hint_Earliest_Record_At__c = hp.hintEarliestRecordAt;
+        p.Hint_Latest_Record_at__c = hp.hintLatestRecordAt;
+        p.Cost_Budget__c = hp.costBudget;
+        p.CostBudgetIncludesExpenses__c = hp.costBuddgetIncludeExpenses;
+        
         return p;
     }
     

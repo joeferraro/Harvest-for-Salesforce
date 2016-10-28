@@ -296,6 +296,7 @@ public virtual class Harvest {
 	protected virtual HarvestProject parseProject(Dom.XMLNode node) {
 		HarvestProject project = null;
 		if (node.getName().equalsIgnoreCase('project')) {
+    		
     		project = new HarvestProject();
     		project.id = node.getChildElement('id', null).getText();
     		project.name = node.getChildElement('name', null).getText();
@@ -307,7 +308,6 @@ public virtual class Harvest {
     		project.notes = node.getChildElement('notes', null).getText();
     		project.budgetBy = node.getChildElement('budget-by', null).getText();
     		project.budget = node.getChildElement('budget', null).getText();
-    		//project.fees = node.getChildElement('fees', null).getText(); seems to be off the model
     		project.hourlyRate  = HarvestUtil.convertDecimal(node.getChildElement('hourly-rate', null).getText());
             project.notifyWhenOverBudget  = HarvestUtil.convertBoolean(node.getChildElement('notify-when-over-budget', null).getText());
     		project.overBudgetPercentage  = HarvestUtil.convertDecimal(node.getChildElement('over-budget-notification-percentage', null).getText());
@@ -323,7 +323,8 @@ public virtual class Harvest {
     		project.costBudget  = node.getChildElement('cost-budget', null).getText();
     		project.costBuddgetIncludeExpenses  = HarvestUtil.convertBoolean(node.getChildElement('cost-budget-include-expenses', null).getText());
     		
-		}	
+		}
+		
 		return project;
 	}
 	

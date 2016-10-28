@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Create_Harvest_Project_Automatically__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If selected, a Harvest Project will be created automatically in Harvest when a Salesforce Opportunity is won</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If selected, a Harvest Project will be created automatically in Harvest when a Salesforce Opportunity is won</inlineHelpText>
+        <label>Create Harvest Project Automatically</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CronTriggerId__c</fullName>
+        <externalId>false</externalId>
+        <label>CronTriggerId</label>
+        <length>25</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Delete_Client_in_Harvest__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If selected, when a Salesforce Account is deleted, its corresponding Harvest Client will be deleted (or archived) in Harvest</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If selected, when a Salesforce Account is deleted, its corresponding Harvest Client will be deleted (or archived) in Harvest</inlineHelpText>
+        <label>Delete Client in Harvest</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Enable_Inbound_Sync__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Deprecated, do not use.</description>
+        <externalId>false</externalId>
+        <label>Enable Inbound Sync (do not use)</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>InboundLastRunDateTime__c</fullName>
+        <description>The last successful run of the inbound integration.  Used for delta-based calls to the Harvest API</description>
+        <externalId>false</externalId>
+        <label>InboundLastRunDateTime</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Key__c</fullName>
+        <externalId>false</externalId>
+        <label>Key</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Password__c</fullName>
+        <description>Harvest password for integration</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Harvest password for integration</inlineHelpText>
+        <label>Password</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SSL__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Does your Harvest account support SSL (https)?</inlineHelpText>
+        <label>Harvest SSL Support</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Subdomain__c</fullName>
+        <description>Example: https://&lt;THIS IS YOUR SUBDOMAIN&gt;.harvestapp.com</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Example: https://&lt;THIS IS YOUR SUBDOMAIN&gt;.harvestapp.com</inlineHelpText>
+        <label>Harvest Subdomain</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Username__c</fullName>
+        <description>Harvest username for integration</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Harvest username for integration</inlineHelpText>
+        <label>Username</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Harvest</label>
+    <visibility>Public</visibility>
+</CustomObject>

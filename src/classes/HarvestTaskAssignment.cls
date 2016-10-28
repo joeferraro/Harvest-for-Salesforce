@@ -7,5 +7,8 @@ public class HarvestTaskAssignment {
 	public Boolean deactivated { get; set; }
 	public String budget { get; set; }
 	public String hourlyRate { get; set; }
-	
+	public Datetime createdAt { get; set; }
+	public Datetime updatedAt { get; set; }
+	public Decimal estimate { get; set; }
+
 }
