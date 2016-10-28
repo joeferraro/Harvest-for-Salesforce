@@ -61,6 +61,26 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Cost_rate__c</fullName>
+        <externalId>false</externalId>
+        <label>Cost rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Created_at__c</fullName>
+        <externalId>false</externalId>
+        <label>Harvest Record created at</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>Default_hourly_rate__c</fullName>
         <externalId>false</externalId>
         <label>Default hourly rate</label>
@@ -114,6 +134,28 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Identity_Account__c</fullName>
+        <externalId>false</externalId>
+        <label>Identity Account ID</label>
+        <length>128</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Identity_User__c</fullName>
+        <externalId>false</externalId>
+        <label>Identity User Id</label>
+        <length>128</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Is_Active__c</fullName>
@@ -754,6 +796,24 @@
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Updated_at__c</fullName>
+        <externalId>false</externalId>
+        <label>Harvest Record updated at</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>has_Wants_Newsletter__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Newsletter</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <label>Harvest User</label>
     <listViews>

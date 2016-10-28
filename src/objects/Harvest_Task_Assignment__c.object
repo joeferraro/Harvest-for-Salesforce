@@ -71,12 +71,30 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Created_at__c</fullName>
+        <externalId>false</externalId>
+        <label>Harvest Record created at</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>Deactivated__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Deactivated</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Estimate__c</fullName>
+        <externalId>false</externalId>
+        <label>Estimate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>Harvest_ID__c</fullName>
@@ -144,6 +162,14 @@
         <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Updated_at__c</fullName>
+        <externalId>false</externalId>
+        <label>Harvest Record updated at</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
     </fields>
     <label>Harvest Task Assignment</label>
     <nameField>

@@ -61,6 +61,15 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Created_at__c</fullName>
+        <externalId>false</externalId>
+        <label>Harvest Record created at</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>Default_hourly_rate__c</fullName>
         <externalId>false</externalId>
         <label>Default hourly rate</label>
@@ -84,6 +93,15 @@
         <unique>true</unique>
     </fields>
     <fields>
+        <fullName>Is_Deactivated__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Deactivated</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Is_default__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -91,6 +109,15 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Updated_at__c</fullName>
+        <externalId>false</externalId>
+        <label>Harvest Record updated at</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
     </fields>
     <label>Harvest Task</label>
     <listViews>
