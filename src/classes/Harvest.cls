@@ -19,19 +19,28 @@ public virtual class Harvest {
 	}
 	
 	public virtual Harvest__c getSettings() {
+		
 		Harvest__c s = Harvest__c.getOrgDefaults();
+		
 		if (s == null) upsert s;
+		
 		return s;
 	}
 		
 	public virtual HarvestUser login(String un, String pw) {
+		
 		HarvestUser u;
+		
 		this.username = un;
 		this.password = pw;
+		
 		HttpRequest req = createRequest('GET', 'account/who_am_i');
 		HttpResponse resp = execute(req);
+		
 		system.debug('#### xml response: ' + resp.getBody());
+		
 		if (resp.getStatusCode() != 200 && pw != 'toolkittesting') {
+		
 			throw new HarvestException('Your login failed, please verify your credentials and SSL support are setup correctly');
 			return null;
 		}
@@ -54,21 +63,32 @@ public virtual class Harvest {
 	}
 	
 	protected virtual HttpRequest createRequest(String method, String path) {
+    	
     	HttpRequest req = new HttpRequest();
      	req.setHeader('Accept', 'application/xml');
      	req.setHeader('Content-Type', 'application/xml');
+     	
      	String endpoint = '';
+     	
      	if (this.settings.SSL__c == true) endpoint += 'https://';
      	else endpoint += 'http://';
+     	
      	endpoint += this.settings.Subdomain__c + '.harvestapp.com/' + path;
+     	
      	req.setEndpoint(endpoint);
+     	
      	system.debug('ENDPOINT IS: ' + endpoint);
      	//req.setEndpoint(this.settings.Domain__c + '/' + path);
+      	
       	req.setMethod(method == null ? 'GET' : method);      	
+      	
       	Blob headerValue = Blob.valueOf(this.username + ':' + this.password);
       	String authorizationHeader = 'Basic ' + EncodingUtil.base64Encode(headerValue);
+      	
       	req.setHeader('Authorization', authorizationHeader);
+      	
       	system.debug('\n\n\n\n\n\n\n\nHEADER\n\n\n\n\nn\n\n\n\n\n' + req.getHeader('Authorization') + '\n\n\n\n\n\nn\n\n\n\n\n\n\n\n\n');
+      	
       	return req;
     }
     
@@ -88,11 +108,16 @@ public virtual class Harvest {
 	}
 	
 	public virtual HttpRequest createBulkRequest(String method, String path, List<map<String, String>> paramList) {
+		
 		String paramString = '';
+		
 		for (Map<String, String> params : paramList) {
 			paramString += '<client>';
+		
 			for (String key : params.keySet()) {
+		
 				if (params.get(key) != null) {
+		
 					paramString += '<'+key+'>' + params.get(key) + '</'+key+'>';
 				}
 			}
@@ -133,21 +158,27 @@ public virtual class Harvest {
 	}
 		
 	public HarvestUser getUser(String userId) {
+		
 		HttpRequest req = createRequest('GET', 'people/'+userId);
 		HttpResponse resp = execute(req);
+		
 		return parseUser(this.getResponseBody(resp, req).getRootElement());
 	}
 		
 	public HarvestInvoice getInvoice(String invoiceId) {
+		
 		HttpRequest req = createRequest('GET', 'invoices/'+invoiceId);
 		HttpResponse resp = execute(req);
+		
 		system.debug(resp.getBody());
 		return parseInvoice(this.getResponseBody(resp, req).getRootElement());
 	}
 	
 	public HarvestTask getTask(String taskId) {
+	
 		HttpRequest req = createRequest('GET', 'tasks/'+taskId);
 		HttpResponse resp = execute(req);
+	
 		return parseTask(this.getResponseBody(resp, req).getRootElement());
 	}
 		
@@ -266,8 +297,11 @@ public virtual class Harvest {
 	} 
 		
 	protected virtual HarvestClient parseClient(Dom.XMLNode node) {
+		
 		HarvestClient client = null;
+		
 		if (node.getName().equalsIgnoreCase('client')) {
+			
 			client = new HarvestClient();
 			client.id = node.getChildElement('id', null).getText();
 			client.name = node.getChildElement('name', null).getText();
@@ -278,8 +312,11 @@ public virtual class Harvest {
 	}
 	
 	protected virtual HarvestContact parseContact(Dom.XMLNode node) {
+		
 		HarvestContact contact = null;
+		
 		if (node.getName().equalsIgnoreCase('contact')) {
+    		
     		contact = new HarvestContact();
     		contact.id = node.getChildElement('id', null).getText();
     		contact.clientId = node.getChildElement('client-id', null).getText();
@@ -290,11 +327,14 @@ public virtual class Harvest {
     		contact.mobile = node.getChildElement('phone-mobile', null).getText();
     		contact.fax = node.getChildElement('fax', null).getText();
 		}	
+		
 		return contact;
 	}
 	
 	protected virtual HarvestProject parseProject(Dom.XMLNode node) {
+		
 		HarvestProject project = null;
+		
 		if (node.getName().equalsIgnoreCase('project')) {
     		
     		project = new HarvestProject();
@@ -329,8 +369,11 @@ public virtual class Harvest {
 	}
 	
 	protected virtual HarvestUser parseWhoAmI(Dom.XmlNode node) {
+		
 		HarvestUser u = null;		
+		
 		if (node.getName().equalsIgnoreCase('user')) {
+			
 			u = new HarvestUser();
 			u.id = node.getChildElement('id', null).getText();
 			u.email = node.getChildElement('email', null).getText();
@@ -338,6 +381,7 @@ public virtual class Harvest {
 			u.isAdmin = HarvestUtil.convertBoolean(node.getChildElement('admin', null).getText());
 			
 		}
+		
 		return u;
 	}
 	
@@ -431,11 +475,45 @@ public virtual class Harvest {
 		}	 
 		return task;
 	}
+
+	protected virtual HarvestTimeEntry parseTimeEntry(Dom.XMLNode node) {
+		
+		HarvestTimeEntry entry = null;
+		
+		if (node.getName().equalsIgnoreCase('timeentry')) {
+    		
+    		entry = new HarvestTimeEntry(); 
+    		
+    		entry.id = node.getChildElement('id', null).getText();
+    		entry.spentAt = HarvestUtil.convertDate(node.getChildElement('spent-at', null).getText());
+    		entry.userId = node.getChildElement('user-id', null).getText();
+    		entry.clientId = node.getChildElement('client-id', null).getText();
+    		entry.projectId = node.getChildElement('project-id', null).getText();
+    		entry.taskId = node.getChildElement('task-id', null).getText();
+    		entry.hours = HarvestUtil.convertDecimal(node.getChildElement('hours', null).getText());
+    		entry.hoursWithTimer = HarvestUtil.convertDecimal(node.getChildElement('hours-with-timer', null).getText());
+    		entry.hoursWithoutTimer = HarvestUtil.convertDecimal(node.getChildElement('hours-without-timer', null).getText());
+    		entry.notes = node.getChildElement('created-at', null).getText();
+    		entry.createdAt = HarvestUtil.convertDateTime(node.getChildElement('created-at', null).getText());
+			entry.updatedAt = HarvestUtil.convertDateTime(node.getChildElement('updated-at', null).getText());
+    		entry.isBilled = HarvestUtil.convertBoolean(node.getChildElement('is-billed', null).getText());
+    		entry.isClosed = HarvestUtil.convertBoolean(node.getChildElement('is-closed', null).getText());
+    		entry.timerStartedAt = HarvestUtil.convertDateTime(node.getChildElement('timer-started-at', null).getText());
+    		entry.startedAt = HarvestUtil.convertDateTime(node.getChildElement('started-at', null).getText());
+    		entry.endedAt = HarvestUtil.convertDateTime(node.getChildElement('ended-at', null).getText());
+    	}	 
+		
+		return entry;
+	}
 	
 	protected virtual HarvestUserAssignment parseUserAssignment(Dom.XMLNode node) {
+		
 		HarvestUserAssignment u = null;
+		
 		if (node.getName().equalsIgnoreCase('user-assignment')) {
+			
 			u = new HarvestUserAssignment();
+			
 			u.id = node.getChildElement('id', null).getText();
 			u.userId = node.getChildElement('user-id', null).getText();
 			u.projectId = node.getChildElement('project-id', null).getText();
@@ -443,12 +521,16 @@ public virtual class Harvest {
 			u.hourlyRate = node.getChildElement('hourly-rate', null).getText();
 			u.isProjectManager = HarvestUtil.convertBoolean(node.getChildElement('is-project-manager', null).getText());
 		}
+		
 		return u;
 	}
 	
 	protected virtual HarvestTaskAssignment parseTaskAssignment(Dom.XMLNode node) {		
+		
 		HarvestTaskAssignment t = null;		
+		
 		if (node.getName().equalsIgnoreCase('task-assignment')) {
+			
 			t = new HarvestTaskAssignment();
 			t.id = node.getChildElement('id', null).getText();
 			t.projectId = node.getChildElement('project-id', null).getText();
@@ -457,19 +539,28 @@ public virtual class Harvest {
 			t.deactivated = HarvestUtil.convertBoolean(node.getChildElement('deactivated', null).getText());
 			t.budget = node.getChildElement('budget', null).getText(); 
 			t.hourlyRate = node.getChildElement('hourly-rate', null).getText();
+			t.createdAt = HarvestUtil.convertDateTime(node.getChildElement('created-at', null).getText());
+			t.updatedAt = HarvestUtil.convertDateTime(node.getChildElement('updated-at', null).getText());
+			t.estimate = HarvestUtil.convertDecimal(node.getChildElement('estimate-id', null).getText());
 		}
+		
 		return t;
 	}
 	
 	private List<HarvestTaskAssignment> parseTaskAssignments(Dom.Document doc) {
+		
 		Dom.XMLNode request = doc.getRootElement();
 		List<HarvestTaskAssignment> assignments = new List<HarvestTaskAssignment>();
+		
 		for(Dom.XMLNode child : request.getChildElements()) {
 			assignments.add(parseTaskAssignment(child));
 		}		
+		
 		return assignments;
 	}
 	
+	
+	//TODO
 	private List<HarvestInvoiceLine> parseInvoiceLines(String csvLines) {
 		List<HarvestInvoiceLine> invoiceLines = new List<HarvestInvoiceLine>();
 		String[] rows = csvLines.split('\n');
@@ -500,47 +591,74 @@ public virtual class Harvest {
 	}
 	
 	private List<HarvestClient> parseClients(Dom.Document doc) {
+		
 		Dom.XMLNode request = doc.getRootElement();
 		List<HarvestClient> clients = new List<HarvestClient>();
+		
 		for(Dom.XMLNode child : request.getChildElements()) {
         	clients.add(parseClient(child));
 		}		
+		
 		return clients;
 	}
 	
 	private List<HarvestContact> parseContacts(Dom.Document doc) {
+		
 		Dom.XMLNode request = doc.getRootElement();
 		List<HarvestContact> contacts = new List<HarvestContact>();
+		
 		for(Dom.XMLNode child : request.getChildElements()) {
 			contacts.add(parseContact(child));
 		}		
+		
 		return contacts;
 	}
 	
 	private List<HarvestProject> parseProjects(Dom.Document doc) {
+		
 		Dom.XMLNode request = doc.getRootElement();
 		List<HarvestProject> projects = new List<HarvestProject>();
+		
 		for(Dom.XMLNode child : request.getChildElements()) {
 			projects.add(parseProject(child));
 		}		
+		
 		return projects;
 	}
 	
+	private List<HarvestTimeEntry> parseTimeEntries(Dom.Document doc) {
+		
+		Dom.XMLNode request = doc.getRootElement();
+		List<HarvestTimeEntry> entries = new List<HarvestTimeEntry>();
+		
+		for(Dom.XMLNode entry : request.getChildElements()) {
+			entries.add(parseTimeEntry(entry));
+		}		
+		
+		return entries;
+	}
+
 	private List<HarvestUser> parseUsers(Dom.Document doc) {
+		
 		Dom.XMLNode request = doc.getRootElement();
 		List<HarvestUser> users = new List<HarvestUser>();
+		
 		for(Dom.XMLNode child : request.getChildElements()) {
 			users.add(parseUser(child));
 		}		
+		
 		return users;
 	}
 	
 	private virtual List<HarvestTask> parseTasks(Dom.Document doc) {
+		
 		Dom.XMLNode request = doc.getRootElement();
 		List<HarvestTask> tasks = new List<HarvestTask>();
+		
 		for(Dom.XMLNode child : request.getChildElements()) {
 			tasks.add(parseTask(child));
 		}		
+		
 		return tasks;
 	}
 	

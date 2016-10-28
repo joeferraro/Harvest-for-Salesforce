@@ -2,6 +2,7 @@ global class HarvestInboundSyncController {
     
     @future (callout = true)
     public static void sync() {        
+        
         Harvest h = new Harvest();
 		Harvest__c settings = Harvest__c.getOrgDefaults();
 		
@@ -10,10 +11,14 @@ global class HarvestInboundSyncController {
 		List<HarvestProject> hProjects;
 		
 		if (settings.InboundLastRunDateTime__c != null) {
+        
         	clients = h.getClientsUpdatedSince(settings.InboundLastRunDateTime__c);
         	hContacts = h.getContactsUpdatedSince(settings.InboundLastRunDateTime__c);
         	hProjects = h.getProjectsUpdatedSince(settings.InboundLastRunDateTime__c);
-		} else {
+		} 
+
+        else {
+        
         	clients = h.getClients();
         	hContacts = h.getContacts();
         	hProjects = h.getProjects();
@@ -21,6 +26,7 @@ global class HarvestInboundSyncController {
 
         List<HarvestUser> hUsers = h.getUsers();
         List<HarvestTask> hTasks = h.getTasks();
+        
         // quick fix: don't get invoices
         // List<HarvestInvoice> hInvoices = h.getInvoices();
         List<HarvestInvoice> hInvoices = new List<HarvestInvoice>();
@@ -36,13 +42,17 @@ global class HarvestInboundSyncController {
 		
         /*PROCESS CLIENTS*/      
         List<Account> accounts = new List<Account>();
+        
         for (HarvestClient c : clients) {
+            
             accounts.add(HarvestUtil.transformClient(c));
         }   
+        
         upsert accounts Harvest_Id__c;
         
         /*PROCESS CONTACTS*/        
         set<string> clientIds = new set<string>();
+        
         for (HarvestContact c: hContacts) {
             clientIds.add(c.clientId);
         }  
@@ -50,6 +60,7 @@ global class HarvestInboundSyncController {
         Map<String, Id> accountMap = HarvestUtil.getHarvestAccountMap(clientIds);   
 
         List<Contact> contacts = new List<Contact>();
+        
         for (HarvestContact c : hContacts) {
             contacts.add(HarvestUtil.transformContact(c, accountMap));
         }   
@@ -65,16 +76,20 @@ global class HarvestInboundSyncController {
         accountMap = HarvestUtil.getHarvestAccountMap(clientIds);   
         
         List<Harvest_Project__c> projects = new List<Harvest_Project__c>();
+        
         for (HarvestProject p : hProjects) {
             projects.add(HarvestUtil.transformProject(p, accountMap));
         }
+        
         upsert projects Harvest_Id__c;
                 
         /*PROCESS USERS*/
         List<Harvest_User__c> users = new List<Harvest_User__c>();
+        
         for (HarvestUser u : hUsers) {
             users.add(HarvestUtil.transformUser(u));
         }
+        
         upsert users Harvest_Id__c;
         
         /*PROCESS TASKS*/
@@ -85,7 +100,7 @@ global class HarvestInboundSyncController {
         upsert tasks Harvest_Id__c;
 
         /*PROCESS INVOICES*/
-        clientIds.clear();
+        /*clientIds.clear();
         clientIds = new Set<String>();
         for (HarvestInvoice hi : hInvoices) {
             clientIds.add(hi.clientId);
@@ -100,7 +115,7 @@ global class HarvestInboundSyncController {
             invoices.add(HarvestUtil.transformInvoice(hi, clientMap));
         }  
         upsert invoices Harvest_Id__c;
-        
+        */
 
 		settings.InboundLastRunDateTime__c = DateTime.now();
 		upsert settings;
