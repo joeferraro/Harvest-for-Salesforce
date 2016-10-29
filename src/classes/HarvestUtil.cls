@@ -157,6 +157,7 @@ public class HarvestUtil {
 	}
 
     public static Harvest_Time_Entry__c transformTimeEntry(
+        
         HarvestTimeEntry t, 
         Map<String, Id> userMap,
         Map<String, Id> taskMap,
@@ -168,7 +169,7 @@ public class HarvestUtil {
         hte.Harvest_ID__c = t.id;
         hte.Harvest_User__c = userMap.get(t.userId);
         hte.Client__c = accountMap.get(t.clientId);
-        hte.Project__c = projectMap.get(t.clientId);
+        hte.Project__c = projectMap.get(t.projectId);
         hte.Task__c = taskMap.get(t.taskId);
         hte.Hours__c = t.hours;
         hte.Hours_With_Timer__c = t.hoursWithTimer;

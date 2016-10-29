@@ -236,13 +236,41 @@ public virtual class Harvest {
 	}
 	
 	public List<HarvestProject> getProjectsForClient(String clientId) {
+		
 		system.debug('getting projects for: ' + clientId);
 		HttpRequest req = createRequest('GET', 'projects?client='+clientId);
 		HttpResponse resp = execute(req);
 		system.debug('projects for that client: \n\n\n\n\n\n\n\n\n\n' + resp.getBody());
+		
 		return parseProjects(this.getResponseBody(resp, req));
 	}
 	
+	
+	public List<HarvestTimeEntry> getTimeEntriesForProject(String projectId) {
+		
+		return getTimeEntriesForProject(projectId, Date.today(), Date.today());
+	}
+
+	public List<HarvestTimeEntry> getTimeEntriesForProject(String projectId, Date fromDate) {
+		
+		return getTimeEntriesForProject(projectId, fromDate, Date.today());
+	}
+
+	public List<HarvestTimeEntry> getTimeEntriesForProject(String projectId, Date fromDate, Date toDate) {
+		
+		system.debug('getting time entries for: ' + projectId);
+
+		String dateFrom = getDateString(fromDate);
+		String dateTo = getDateString(toDate);
+		
+		HttpRequest req = createRequest('GET', 'projects/'+projectId+'/entries?from=' +dateFrom + '&to=' + dateTo);
+		HttpResponse resp = execute(req);
+		
+		system.debug('time entries for that project: \n\n\n\n\n\n\n\n\n\n' + resp.getBody());
+		
+		return parseTimeEntries(this.getResponseBody(resp, req));
+	}
+
 	public List<HarvestInvoiceMessage> getInvoiceMessages(String invoiceId) {
 		HttpRequest req = createRequest('GET', 'invoices/'+invoiceId+'/messages');
 		HttpResponse resp = execute(req);
@@ -480,27 +508,27 @@ public virtual class Harvest {
 		
 		HarvestTimeEntry entry = null;
 		
-		if (node.getName().equalsIgnoreCase('timeentry')) {
+		if (node.getName().equalsIgnoreCase('day-entry')) {
     		
     		entry = new HarvestTimeEntry(); 
     		
     		entry.id = node.getChildElement('id', null).getText();
     		entry.spentAt = HarvestUtil.convertDate(node.getChildElement('spent-at', null).getText());
     		entry.userId = node.getChildElement('user-id', null).getText();
-    		entry.clientId = node.getChildElement('client-id', null).getText();
+    		//entry.clientId = node.getChildElement('client-id', null).getText();
     		entry.projectId = node.getChildElement('project-id', null).getText();
     		entry.taskId = node.getChildElement('task-id', null).getText();
     		entry.hours = HarvestUtil.convertDecimal(node.getChildElement('hours', null).getText());
-    		entry.hoursWithTimer = HarvestUtil.convertDecimal(node.getChildElement('hours-with-timer', null).getText());
-    		entry.hoursWithoutTimer = HarvestUtil.convertDecimal(node.getChildElement('hours-without-timer', null).getText());
+    		//entry.hoursWithTimer = HarvestUtil.convertDecimal(node.getChildElement('hours-with-timer', null).getText());
+    		//entry.hoursWithoutTimer = HarvestUtil.convertDecimal(node.getChildElement('hours-without-timer', null).getText());
     		entry.notes = node.getChildElement('created-at', null).getText();
     		entry.createdAt = HarvestUtil.convertDateTime(node.getChildElement('created-at', null).getText());
 			entry.updatedAt = HarvestUtil.convertDateTime(node.getChildElement('updated-at', null).getText());
     		entry.isBilled = HarvestUtil.convertBoolean(node.getChildElement('is-billed', null).getText());
     		entry.isClosed = HarvestUtil.convertBoolean(node.getChildElement('is-closed', null).getText());
     		entry.timerStartedAt = HarvestUtil.convertDateTime(node.getChildElement('timer-started-at', null).getText());
-    		entry.startedAt = HarvestUtil.convertDateTime(node.getChildElement('started-at', null).getText());
-    		entry.endedAt = HarvestUtil.convertDateTime(node.getChildElement('ended-at', null).getText());
+    		//entry.startedAt = HarvestUtil.convertDateTime(node.getChildElement('started-at', null).getText());
+    		//entry.endedAt = HarvestUtil.convertDateTime(node.getChildElement('ended-at', null).getText());
     	}	 
 		
 		return entry;
@@ -541,7 +569,7 @@ public virtual class Harvest {
 			t.hourlyRate = node.getChildElement('hourly-rate', null).getText();
 			t.createdAt = HarvestUtil.convertDateTime(node.getChildElement('created-at', null).getText());
 			t.updatedAt = HarvestUtil.convertDateTime(node.getChildElement('updated-at', null).getText());
-			t.estimate = HarvestUtil.convertDecimal(node.getChildElement('estimate-id', null).getText());
+			t.estimate = HarvestUtil.convertDecimal(node.getChildElement('estimate', null).getText());
 		}
 		
 		return t;
@@ -862,5 +890,15 @@ public virtual class Harvest {
 		HttpResponse resp = execute(req);
 		system.debug('#############:   ' + resp.getBody());
 		return null;
+	}
+
+	private String getDateString(Date dateString) {
+
+		return String.valueOf(dateString.year()) + padWithZero(String.valueOf(dateString.month())) + padWithZero(String.valueOf(dateString.day()));
+	} 
+	
+	private string padWithZero(String s) {
+
+		return  (s.length() == 1) ? '0' + s : s;
 	}
 }
