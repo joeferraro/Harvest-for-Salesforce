@@ -6,5 +6,7 @@ public class HarvestTask {
 	public String id { get; set; }
 	public Boolean isDefault { get; set; }
 	public String name { get; set; }
-		
+	public Datetime createdAt { get; set; }
+	public Datetime updatedAt { get; set; }
+	
 }

@@ -5,6 +5,10 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>Clone</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -25,6 +29,10 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>Tab</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -32,98 +40,108 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <deprecated>false</deprecated>
     <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Amount__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Amount</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
         <fullName>Description__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Description</label>
         <length>32000</length>
+        <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>Invoice__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Invoice</label>
         <referenceTo>Harvest_Invoice__c</referenceTo>
         <relationshipLabel>Line Items</relationshipLabel>
         <relationshipName>Harvest_Invoice_Line_Items</relationshipName>
         <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
         <fullName>Kind__c</fullName>
-        <deprecated>false</deprecated>
+        <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Type</label>
         <referenceTo>Harvest_Invoice_Category__c</referenceTo>
         <relationshipLabel>Invoice Line Items</relationshipLabel>
         <relationshipName>Harvest_Invoice_Line_Items</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Project__c</fullName>
-        <deprecated>false</deprecated>
+        <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Project</label>
         <referenceTo>Harvest_Project__c</referenceTo>
         <relationshipLabel>Invoice Line Items</relationshipLabel>
         <relationshipName>Harvest_Invoice_Line_Items</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Quantity__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Quantity</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Taxed2__c</fullName>
         <defaultValue>false</defaultValue>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Taxed2</label>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Taxed__c</fullName>
         <defaultValue>false</defaultValue>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Taxed</label>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Unit_Price__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Unit Price</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <label>Harvest Invoice Line Item</label>

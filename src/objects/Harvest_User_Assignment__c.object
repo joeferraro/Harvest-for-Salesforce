@@ -5,6 +5,10 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>Clone</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -25,6 +29,10 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>Tab</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -32,74 +40,122 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <deprecated>false</deprecated>
     <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Budget__c</fullName>
+        <externalId>false</externalId>
+        <label>Budget</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Created_at__c</fullName>
+        <externalId>false</externalId>
+        <label>Harvest Record created at</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Estimate__c</fullName>
+        <externalId>false</externalId>
+        <label>Estimate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
     <fields>
         <fullName>Harvest_ID__c</fullName>
         <caseSensitive>false</caseSensitive>
-        <deprecated>false</deprecated>
         <externalId>true</externalId>
         <label>Harvest ID</label>
         <length>255</length>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>true</unique>
     </fields>
     <fields>
         <fullName>Harvest_User__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Harvest User</label>
         <referenceTo>Harvest_User__c</referenceTo>
         <relationshipLabel>Projects</relationshipLabel>
         <relationshipName>Harvest_User_Assignments</relationshipName>
         <relationshipOrder>1</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
         <fullName>Hourly_rate__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Hourly rate</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
         <fullName>Is_Deactivated__c</fullName>
         <defaultValue>false</defaultValue>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Deactivated</label>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Is_Project_Manager__c</fullName>
         <defaultValue>false</defaultValue>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Project Manager</label>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Project__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Project</label>
         <referenceTo>Harvest_Project__c</referenceTo>
         <relationshipLabel>People</relationshipLabel>
         <relationshipName>Harvest_User_Assignments</relationshipName>
         <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
+    <fields>
+        <fullName>Updated_at__c</fullName>
+        <externalId>false</externalId>
+        <label>Harvest Record updated at</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
     <label>Harvest User Assignment</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>Alle</label>
+    </listViews>
     <nameField>
         <displayFormat>UA-{000000}</displayFormat>
         <label>Harvest User Assignment Name</label>

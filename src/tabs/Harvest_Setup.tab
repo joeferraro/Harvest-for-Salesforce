@@ -3,6 +3,6 @@
     <icon>Harvest/Harvest_H_Logo.png</icon>
     <label>Harvest Setup</label>
     <mobileReady>false</mobileReady>
-    <motif>Custom293: Custom</motif>
+    <motif>Custom293: TV Widescreen</motif>
     <page>HarvestSetup</page>
 </CustomTab>

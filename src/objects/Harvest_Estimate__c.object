@@ -5,6 +5,10 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>Clone</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -25,6 +29,10 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>Tab</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -32,587 +40,599 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <deprecated>false</deprecated>
     <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
     <enableEnhancedLookup>false</enableEnhancedLookup>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Account__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Account</label>
         <referenceTo>Account</referenceTo>
         <relationshipName>Harvest_Estimates</relationshipName>
         <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
         <fullName>Amount__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Amount</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
         <fullName>Created_At__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Created At</label>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>DateTime</type>
     </fields>
     <fields>
         <fullName>Currency__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Currency</label>
-        <picklist>
-            <picklistValues>
-                <fullName>United States Dollars - USD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Euro - EUR</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>United Kingdom Pounds - GBP</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Canada Dollars - CAD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Australia Dollars - AUD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Japan Yen - JPY</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>India Rupees - INR</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>New Zealand Dollars - NZD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Switzerland Francs - CHF</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>South Africa Rand - ZAR</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Afghanistan Afghanis - AFN</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Albania Leke - ALL</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Algeria Dinars - DZD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Argentina Pesos - ARS</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Bahamas Dollars - BSD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Bahrain Dinars - BHD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Bangladesh Taka - BDT</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Barbados Dollars - BBD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Belize Dollar - BZD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Bermuda Dollars - BMD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Brazil Reais - BRL</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Bulgaria Leva - BGN</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Chile Pesos - CLP</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>China Yuan Renminbi - CNY</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Colombia Pesos - COP</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Costa Rica Colones - CRC</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Croatia Kuna - HRK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Cyprus Pounds - CYP</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Czech Republic Koruny - CZK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Dominican Republic Pesos - DOP</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Danish Krone - DKK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Eastern Caribbean Dollars - XCD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Egypt Pounds - EGP</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Estonia Krooni - EEK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Fiji Dollars - FJD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Hong Kong Dollars - HKD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Hungary Forint - HUF</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Iceland Kronur - ISK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Indonesia Rupiahs - IDR</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Iran Rials - IRR</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Iraq Dinars - IQD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Israel New Shekels - ILS</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Jamaica Dollars - JMD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Jordan Dinars - JOD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Kenya Shillings - KES</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Korea (South) Won - KRW</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Kuwait Dinars - KWD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Latvian Lat - LVL</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Lebanon Pounds - LBP</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Malaysia Ringgits - MYR</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Malta Liri - MTL</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Mauritius Rupees - MUR</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Mexico Pesos - MXN</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Morocco Dirhams - MAD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Nigerian Naira - NGN</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Norway Kroner - NOK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Oman Rials - OMR</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Pakistan Rupees - PKR</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Papua New Guinea Kina - PGK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Paraguayan Guarani - PYG</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Peru Nuevos Soles - PEN</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Philippines Pesos - PHP</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Poland Zlotych - PLN</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Qatar Riyals - QAR</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Romania New Lei - RON</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Russia Rubles - RUB</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Saudi Arabia Riyals - SAR</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Singapore Dollars - SGD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Slovakia Koruny - SKK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>South Korea Won - KRW</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Sri Lanka Rupees - LKR</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Sudan Pounds - SDG</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Swedish krona - SEK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Taiwan New Dollars - TWD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Thailand Baht - THB</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Trinidad and Tobago Dollars - TTD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Tunisia Dinars - TND</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Turkey New Lira - TRY</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>United Arab Emirates Dirham - AED</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Uruguayan peso - UYU</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Ukrainian hryvnia - UAH</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Venezuela Bolivares - VEB</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Vietnam Dong - VND</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Zambia Kwacha - ZMK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>United States Dollars - USD</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Euro - EUR</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>United Kingdom Pounds - GBP</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Canada Dollars - CAD</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Australia Dollars - AUD</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Japan Yen - JPY</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>India Rupees - INR</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>New Zealand Dollars - NZD</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Switzerland Francs - CHF</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>South Africa Rand - ZAR</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Afghanistan Afghanis - AFN</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Albania Leke - ALL</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Algeria Dinars - DZD</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Argentina Pesos - ARS</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Bahamas Dollars - BSD</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Bahrain Dinars - BHD</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Bangladesh Taka - BDT</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Barbados Dollars - BBD</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Belize Dollar - BZD</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Bermuda Dollars - BMD</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Brazil Reais - BRL</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Bulgaria Leva - BGN</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Chile Pesos - CLP</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>China Yuan Renminbi - CNY</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Colombia Pesos - COP</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Costa Rica Colones - CRC</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Croatia Kuna - HRK</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Cyprus Pounds - CYP</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Czech Republic Koruny - CZK</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Dominican Republic Pesos - DOP</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Danish Krone - DKK</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Eastern Caribbean Dollars - XCD</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Egypt Pounds - EGP</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Estonia Krooni - EEK</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Fiji Dollars - FJD</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Hong Kong Dollars - HKD</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Hungary Forint - HUF</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Iceland Kronur - ISK</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Indonesia Rupiahs - IDR</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Iran Rials - IRR</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Iraq Dinars - IQD</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Israel New Shekels - ILS</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Jamaica Dollars - JMD</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Jordan Dinars - JOD</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Kenya Shillings - KES</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Korea (South) Won - KRW</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Kuwait Dinars - KWD</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Latvian Lat - LVL</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Lebanon Pounds - LBP</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Malaysia Ringgits - MYR</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Malta Liri - MTL</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Mauritius Rupees - MUR</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Mexico Pesos - MXN</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Morocco Dirhams - MAD</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Nigerian Naira - NGN</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Norway Kroner - NOK</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Oman Rials - OMR</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Pakistan Rupees - PKR</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Papua New Guinea Kina - PGK</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Paraguayan Guarani - PYG</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Peru Nuevos Soles - PEN</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Philippines Pesos - PHP</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Poland Zlotych - PLN</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Qatar Riyals - QAR</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Romania New Lei - RON</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Russia Rubles - RUB</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Saudi Arabia Riyals - SAR</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Singapore Dollars - SGD</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Slovakia Koruny - SKK</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>South Korea Won - KRW</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Sri Lanka Rupees - LKR</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Sudan Pounds - SDG</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Swedish krona - SEK</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Taiwan New Dollars - TWD</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Thailand Baht - THB</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Trinidad and Tobago Dollars - TTD</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Tunisia Dinars - TND</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Turkey New Lira - TRY</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>United Arab Emirates Dirham - AED</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Uruguayan peso - UYU</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Ukrainian hryvnia - UAH</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Venezuela Bolivares - VEB</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Vietnam Dong - VND</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Zambia Kwacha - ZMK</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Discount_Amount__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Discount Amount</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
         <fullName>Discount__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Discount</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackTrending>false</trackTrending>
         <type>Percent</type>
     </fields>
     <fields>
         <fullName>Due_Amount__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Due Amount</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
         <fullName>Due_At_Human_Format__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Terms</label>
         <length>255</length>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Due_At__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Due Date</label>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
         <fullName>Harvest_ID__c</fullName>
         <caseSensitive>false</caseSensitive>
-        <deprecated>false</deprecated>
         <externalId>true</externalId>
         <label>Harvest ID</label>
         <length>255</length>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>true</unique>
     </fields>
     <fields>
         <fullName>Invoice_Number__c</fullName>
         <caseSensitive>false</caseSensitive>
-        <deprecated>false</deprecated>
         <externalId>true</externalId>
         <label>Invoice Number</label>
         <length>255</length>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>true</unique>
     </fields>
     <fields>
         <fullName>Issued_At__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Issued At</label>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
         <fullName>Notes__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Notes</label>
         <length>32000</length>
+        <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>Period_End__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Period End</label>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
         <fullName>Period_Start__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Period Start</label>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
         <fullName>Purchase_Order__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Purchase Order</label>
         <length>255</length>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>State__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>State</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Draft</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Open</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Partially Paid</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Paid</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Closed (Written off)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Draft</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Open</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Partially Paid</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Paid</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Closed (Written off)</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Subject__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Subject</label>
         <length>255</length>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Tax_2_Amount__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Tax 2 Amount</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
         <fullName>Tax_2__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Tax 2</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackTrending>false</trackTrending>
         <type>Percent</type>
     </fields>
     <fields>
         <fullName>Tax_Amount__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Tax Amount</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
         <fullName>Tax__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Tax</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackTrending>false</trackTrending>
         <type>Percent</type>
     </fields>
     <fields>
         <fullName>Updated_At__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Updated At</label>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>DateTime</type>
     </fields>
     <label>Harvest Estimate</label>
@@ -647,6 +667,7 @@
         <fullName>View_in_Harvest</fullName>
         <availability>online</availability>
         <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
         <hasMenubar>false</hasMenubar>
         <hasScrollbars>true</hasScrollbars>
         <hasToolbar>false</hasToolbar>

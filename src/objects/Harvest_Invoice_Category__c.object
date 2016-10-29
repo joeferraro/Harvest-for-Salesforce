@@ -5,6 +5,10 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>Clone</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -25,6 +29,10 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>Tab</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -32,53 +40,58 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <deprecated>false</deprecated>
     <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Created_At__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Created At</label>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>DateTime</type>
     </fields>
     <fields>
         <fullName>Harvest_ID__c</fullName>
         <caseSensitive>false</caseSensitive>
-        <deprecated>false</deprecated>
         <externalId>true</externalId>
         <label>Harvest ID</label>
         <length>255</length>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>true</unique>
     </fields>
     <fields>
         <fullName>Updated_At__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Updated At</label>
         <required>false</required>
+        <trackTrending>false</trackTrending>
         <type>DateTime</type>
     </fields>
     <fields>
         <fullName>Use_As_Expense__c</fullName>
         <defaultValue>false</defaultValue>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Use As Expense</label>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Use_As_Service__c</fullName>
         <defaultValue>false</defaultValue>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Use As Service</label>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <label>Harvest Invoice Category</label>
@@ -93,6 +106,7 @@
         <fullName>View_in_Harvest</fullName>
         <availability>online</availability>
         <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
         <hasMenubar>false</hasMenubar>
         <hasScrollbars>true</hasScrollbars>
         <hasToolbar>false</hasToolbar>

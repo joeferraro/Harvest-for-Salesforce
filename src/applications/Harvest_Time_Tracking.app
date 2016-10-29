@@ -9,4 +9,6 @@
     <tab>standard-Contract</tab>
     <tab>standard-report</tab>
     <tab>Harvest</tab>
+    <tab>Harvest_Time_Entry__c</tab>
+    <tab>Harvest_User_Assignment__c</tab>
 </CustomApplication>

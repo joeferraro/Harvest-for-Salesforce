@@ -12,4 +12,5 @@
     <tab>Harvest_Application</tab>
     <tab>standard-report</tab>
     <tab>standard-Dashboard</tab>
+    <tab>Harvest_User_Assignment__c</tab>
 </CustomApplication>
